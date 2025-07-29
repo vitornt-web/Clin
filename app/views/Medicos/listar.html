@@ -2,5 +2,6 @@
 #{set title:'Home' /}
 
 #{list items: lista, as:'m'}
- <a href='@{Medicos.editar(m.id)}'> <a href='@{Medicos.deletar(m.id)}'> ${m.nome} - ${m.crm} | ${m.email} 
+ <a href='@{Medicos.editar(m.id)}'>Editar</a> <a href='@{Medicos.deletar(m.id)}'>Deletar</a> Nome: ${m.nome} - CRM: ${m.crm} | E-mail: ${m.email} <br> 
 #{/list}
+
