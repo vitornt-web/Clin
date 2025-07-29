@@ -1,0 +1,23 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+
+<form action="@Medicos.salvar">
+	<div class="mb-3">
+		<label for="exampleInputPassword1" class="form-label">Nome</label>
+		<input name="med.nome" type="text" class="form-control"
+			id="exampleInputPassword1">
+	</div>
+	<div class="mb-3">
+		<label for="exampleFormControlInput1" class="form-label">Email
+			</label> <input name="med.email" type="email" class="form-control"
+			id="exampleFormControlInput1" placeholder="name@example.com">
+	</div>
+
+	<div class="mb-3">
+		<div class="form-check">
+			<input name="med.check" class="form-check-input" type="checkbox"
+				id="disabledFieldsetCheck"> <label class="form-check-label"
+				for="disabledFieldsetCheck"> </label>
+		</div>
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>

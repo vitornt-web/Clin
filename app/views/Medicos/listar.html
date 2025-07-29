@@ -1,0 +1,6 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{list items: lista, as:'m'}
+ <a href='@{Medicos.editar(m.id)}'> <a href='@{Medicos.deletar(m.id)}'> ${m.nome} - ${m.crm} | ${m.email} 
+#{/list}
