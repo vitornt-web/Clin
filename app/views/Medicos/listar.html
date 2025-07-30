@@ -1,9 +1,15 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
+<form action="@{Medicos.listar}">
+	<label>Buscar por nome ou email:</label>
+	<input type="text" name="termos" value="${termo}" />
+	<input type="submit" />
+</form>
+
 <ul>
 #{list items: medicosAtivos, as:'m'}
- <li>Nome: ${m.nome} - CRM: ${m.crm} | E-mail: ${m.email} 
+ <li>Nome: ${m.nome} - CRM: ${m.crm} | E-mail: ${m.email}
  <a href="@{Medicos.editar(m.id)}">Editar</a>
  	 <a href="
  	 @{Medicos.deletar(m.id)}">Remover</a>

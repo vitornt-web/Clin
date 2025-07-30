@@ -16,6 +16,8 @@ public class Medico extends Model{
 	public String email;
 	public Integer crm;
 	
+	
+	
 	@Enumerated(EnumType.STRING)
 	public Status status;
 	

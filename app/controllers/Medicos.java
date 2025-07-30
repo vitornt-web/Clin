@@ -15,26 +15,33 @@ public class Medicos extends Controller{
 		render(especialidades);
 	}
 	
-	public static void listar() {
-	    List<Medico> medicosAtivos;
+	public static void listar(String termo) {
+	    List<Medico> medicosAtivos = null;
 	    medicosAtivos = Medico.find("status <> ?1", Status.INATIVO).fetch();
 	    
-
-	    render(medicosAtivos);
+	    if(termo == null) {
+	    	medicosAtivos = Medico.findAll();
+	    }else {
+	    	medicosAtivos = Medico.find("lower(nome) like ?1 "
+					+ "or lower(email) like ?1",
+					"%" + termo.toLowerCase() + "%").fetch();
+	    }
+			render(medicosAtivos, termo);
+	    
 	}
 
 	
 	public static void salvar(Medico med) {
 	
 		Medico m =med;
-		m.save();
-	
+		m.save();	
 		form();
 	}
 	
 	public static void editar(Long id) {
 		
 		Medico med = Medico.findById(id); 
+		List<Especialidade> especialidades = Especialidade.findAll();
 		renderTemplate("Medicos/form.html", med);
 	}
 	
@@ -42,6 +49,6 @@ public class Medicos extends Controller{
 		Medico med = Medico.findById(id);
 		med.status = Status.INATIVO;
 		med.save();
-	    listar();
+	    listar(null);
 	}
 }
