@@ -22,12 +22,17 @@ public class Medico extends Model{
 	@ManyToOne
 	public Especialidade especialidade;
 	
+	public Medico() {
+		this.status = Status.ATIVO;
+	}
 	
-	public Medico(String nome, String email, Integer crm) {
+	
+	public Medico(String nome, String email, Integer crm,Especialidade esp) {
 		this.nome = nome;
 		this.email = email;
 		this.crm = crm;
 		this.status = Status.ATIVO;
+		this.especialidade = esp;
 	}
 
 }

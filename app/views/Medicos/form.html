@@ -1,4 +1,5 @@
-#{extends 'main.html' /} #{set title:'Home' /}
+#{extends 'main.html' /} 
+#{set title:'Home' /}
 
 ${med?.nome}
 
@@ -21,6 +22,17 @@ ${med?.nome}
 			</label> <input value="${med?.email}" name="med.email" type="email" class="form-control"
 			id="exampleFormControlInput1" placeholder="name@example.com">
 	</div>
+	
+	<div class="mb-3">
+        <label for="especialidade" class="form-label">Especialidade</label>
+        <select name="med.especialidade.id" id="especialidade" class="form-select">
+            <option value="">Selecione uma especialidade</option> 
+            #{list items:especialidades, as:'especialidadeItem'}
+                <option value="${especialidadeItem.id}" ${med?.especialidade?.id == especialidadeItem.id ? 'selected' : ''}>${especialidadeItem.nome}</option>
+            #{/list}
+        </select>
+    </div>
+
 	<button type="submit" class="btn btn-primary">Submit</button> 
 </form>
  

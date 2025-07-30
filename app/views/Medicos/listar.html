@@ -1,7 +1,16 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{list items: MedicosAtivos, as:'m'}
- <a href='@{Medicos.editar(m.id)}'>Editar</a> <a href='@{Medicos.deletar(m.id)}'>Remover</a> Nome: ${m.nome} - CRM: ${m.crm} | E-mail: ${m.email} <br> 
+<ul>
+#{list items: medicosAtivos, as:'m'}
+ <li>Nome: ${m.nome} - CRM: ${m.crm} | E-mail: ${m.email} 
+ <a href="@{Medicos.editar(m.id)}">Editar</a>
+ 	 <a href="
+ 	 @{Medicos.deletar(m.id)}">Remover</a>
+  </li>
 #{/list}
+#{else}
+Não há médicos cadastrados.
+#{/else}
+</ul>
 

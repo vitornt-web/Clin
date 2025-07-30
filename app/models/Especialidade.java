@@ -9,6 +9,11 @@ import play.db.jpa.Model;
 public class Especialidade extends Model {
 	
 	public String nome;
+
+	public Especialidade(String nome) {
+		super();
+		this.nome = nome;
+	}
 	
 
 }

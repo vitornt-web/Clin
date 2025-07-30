@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import models.Especialidade;
 import models.Medico;
 import models.Status;
 import play.mvc.Controller;
@@ -9,33 +10,25 @@ import play.mvc.Controller;
 public class Medicos extends Controller{
  
 	public static void form() {
-		render();
+		List<Especialidade> especialidades = Especialidade.findAll();
+		
+		render(especialidades);
 	}
 	
-	public static void listar(String termo) {
+	public static void listar() {
 	    List<Medico> medicosAtivos;
+	    medicosAtivos = Medico.find("status <> ?1", Status.INATIVO).fetch();
+	    
 
-	    if (termo == null || termo.trim().isEmpty()) {
-	        medicosAtivos = Medico.find(
-	            "status <> ?1 or status is null",
-	            Status.INATIVO
-	        ).fetch();
-	    } else {
-	        String termoBusca = "%" + termo.toLowerCase() + "%";
-	        medicosAtivos = Medico.find(
-	            "lower(nome) like ?1 and (status <> ?2 or status is null)",
-	            termoBusca, Status.INATIVO
-	        ).fetch();
-	    }
-
-	    render(medicosAtivos, termo);
+	    render(medicosAtivos);
 	}
 
 	
 	public static void salvar(Medico med) {
 	
-		med.save();
-//      listar(null);		
+		Medico m =med;
+		m.save();
+	
 		form();
 	}
 	
@@ -49,6 +42,6 @@ public class Medicos extends Controller{
 		Medico med = Medico.findById(id);
 		med.status = Status.INATIVO;
 		med.save();
-	    listar(null);
+	    listar();
 	}
 }
