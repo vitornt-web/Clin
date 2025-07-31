@@ -21,6 +21,13 @@
 
   document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
+  
+  // Remove a âncora #appointment da URL após o carregamento
+     document.addEventListener("DOMContentLoaded", function () {
+       if (window.location.hash === "#appointment") {
+         history.replaceState(null, "", window.location.pathname + window.location.search);
+       }
+     });
 
   /**
    * Mobile nav toggle
