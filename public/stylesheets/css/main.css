@@ -1158,7 +1158,7 @@ section,
   border-radius: 50px;
 }
 
-.appointment .php-email-form a[onclick] {
+.appointment .php-email-form a[href] {
   background: var(--accent-color);
   border: 0;
   padding: 10px 35px;

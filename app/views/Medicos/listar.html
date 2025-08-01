@@ -1,22 +1,166 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-<form action="@{Medicos.listar}">
-	<label>Buscar por nome ou email:</label>
-	<input type="text" name="termos" value="${termo}" />
-	<input type="submit" />
-</form>
+<!DOCTYPE html>
+<html lang="en">
 
-<ul>
-#{list items: medicosAtivos, as:'m'}
- <li>Nome: ${m.nome} - CRM: ${m.crm} | E-mail: ${m.email}
- <a href="@{Medicos.editar(m.id)}">Editar</a>
- 	 <a href="
- 	 @{Medicos.deletar(m.id)}">Remover</a>
-  </li>
-#{/list}
-#{else}
-Não há médicos cadastrados.
-#{/else}
-</ul>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>#{get 'title' /}</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+#{get 'moreStyles' /}
+
+<!-- Favicons -->
+<link href="@{'public/images/img/favicon.png'}" rel="icon">
+<link href="@{'public/images/img/apple-touch-icon.png'}"
+	rel="apple-touch-icon">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+	rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link
+	href="@{'public/stylesheets/css/vendor/bootstrap/css/bootstrap.min.css'}"
+	rel="stylesheet">
+<link
+	href="@{'public/stylesheets/css/vendor/bootstrap-icons/bootstrap-icons.css'}"
+	rel="stylesheet">
+<link href="@{'public/stylesheets/css/vendor/aos/aos.css'}"
+	rel="stylesheet">
+<link
+	href="@{'public/stylesheets/css/vendor/fontawesome-free/css/all.min.css'}"
+	rel="stylesheet">
+<link
+	href="@{'public/stylesheets/css/vendor/glightbox/css/glightbox.min.css'}"
+	rel="stylesheet">
+<link
+	href="@{'public/stylesheets/css/vendor/swiper/swiper-bundle.min.css'}"
+	rel="stylesheet">
+
+<!-- Main CSS File -->
+<link href="@{'public/stylesheets/css/main.css'}" rel="stylesheet">
+
+<!-- =======================================================
+  * Template Name: Medilab
+  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+<body class="index-page">
+	
+	<header id="header" class="header sticky-top">
+
+		
+	
+
+		<div class="branding d-flex align-items-center">
+
+			<div
+				class="container position-relative d-flex align-items-center justify-content-between">
+				<a href="index.html" class="logo d-flex align-items-center me-auto">
+					<!-- Uncomment the line below if you also wish to use an image logo -->
+					<!-- <img src="assets/img/logo.png" alt=""> -->
+					<h1 class="sitename">VIVAZ</h1>
+				</a>
+
+				<nav id="navmenu" class="navmenu">
+					
+					<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+				</nav>
+
+				<a class="cta-btn d-none d-sm-block" href="@{Medicos.form}">Página inicial</a>
+
+			</div>
+
+		</div>
+
+	</header>
+
+	<main class="main">
+
+		<!-- Hero Section -->
+		<section id="hero" class="hero section light-background">
+
+			<img src="@{'public/images/img/hero-bg.jpg'}" alt=""
+				data-aos="fade-in">
+
+			<div class="container position-relative">
+
+				<div class="welcome position-relative" data-aos="fade-down"
+					data-aos-delay="100">
+					<form action="@{Medicos.listar}" class="row g-3 mb-4">
+							<div class="col-md-6">
+								<label class="form-label">Buscar por nome ou email:</label>
+								<input type="text" name="termo" value="${termo}" class="form-control" placeholder="Digite o nome ou email">
+							</div>
+							<div class="col-md-2 align-self-end">
+								<button type="submit" class="btn btn-primary w-100">Buscar</button>
+							</div>
+						</form>
+
+						<ul class="list-group mb-5">
+								#{list items: medicosAtivos, as:'m'}
+									<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+										<div>
+											<strong>Nome:</strong> ${m.nome} 
+											<strong>CRM:</strong> ${m.crm} 
+											<strong>Email:</strong> ${m.email}
+										</div>
+										<div>
+											<a href="@{Medicos.editar(m.id)}" class="btn btn-sm btn-outline-secondary me-2">Editar</a>
+											<a href="@{Medicos.deletar(m.id)}" class="btn btn-sm btn-outline-danger">Remover</a>
+										</div>
+									</li>
+								#{/list}
+								#{else}
+									<li class="list-group-item">Não há médicos cadastrados.</li>
+								#{/else}
+							</ul>
+
+			</div>
+
+		</section>
+		<!-- /Hero Section -->
+		</main>
+
+
+
+	<!-- Scroll Top -->
+		<a href="#" id="scroll-top"
+			class="scroll-top d-flex align-items-center justify-content-center"><i
+			class="bi bi-arrow-up-short"></i></a>
+
+		<!-- Preloader -->
+		<div id="preloader"></div>
+
+		<!-- Vendor JS Files -->
+		<script
+			src="@{'public/stylesheets/css/vendor/bootstrap/js/bootstrap.bundle.min.js'}"></script>
+		<script
+			src="@{'public/stylesheets/css/vendor/php-email-form/validate.js'}"></script>
+		<script src="@{'public/stylesheets/css/vendor/aos/aos.js'}"></script>
+		<script
+			src="@{'public/stylesheets/css/vendor/glightbox/js/glightbox.min.js'}"></script>
+		<script
+			src="@{'public/stylesheets/css/vendor/purecounter/purecounter_vanilla.js'}"></script>
+		<script
+			src="@{'public/stylesheets/css/vendor/swiper/swiper-bundle.min.js'}"></script>
+
+		<!-- Main JS File -->
+		<script src="@{'public/javascripts/js/main.js'}"></script>
+
+		#{get 'moreScripts' /}
+
+	</body>
+
+	</html>
 
