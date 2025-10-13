@@ -64,6 +64,18 @@
       e.stopImmediatePropagation();
     });
   });
+  
+  //flash-popup
+  document.addEventListener("DOMContentLoaded", () => {
+    const popup = document.getElementById("flashPopup");
+    if (popup) {
+      // some automaticamente após 4 segundos
+      setTimeout(() => popup.classList.remove("show"), 4000);
+
+      // ou fecha ao clicar
+      popup.addEventListener("click", () => popup.classList.remove("show"));
+    }
+  });
 
   /**
    * Preloader

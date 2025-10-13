@@ -6,14 +6,21 @@ import models.Especialidade;
 import models.Medico;
 import models.Status;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(Seguranca.class)
 public class Medicos extends Controller {
 
 	public static void form() {
-		List<Especialidade> especialidades = Especialidade.findAll();
+	    if(!session.contains("medico.nome")) {
+	        flash.error("Você precisa estar logado para acessar esta página.");
+	        redirect("/login"); // evita loop
+	    }
 
-		render(especialidades);
+	    List<Especialidade> especialidades = Especialidade.findAll();
+	    render(especialidades);
 	}
+
 
 	public static void listar(String termo) {
 	    List<Medico> medicosAtivos = null;
