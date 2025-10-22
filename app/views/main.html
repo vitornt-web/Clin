@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 
+<!-- Flash popup centralizado -->
+#{if flash.success}
+<div id="flashPopup" class="popup-flash show bg-success text-white">
+  <div class="popup-content text-center p-4 rounded">
+    <p class="mb-0">${flash.success}</p>
+  </div>
+</div>
+#{/if}
+
+#{if flash.error}
+<div id="flashPopup" class="popup-flash show bg-danger text-white">
+  <div class="popup-content text-center p-4 rounded">
+    <p class="mb-0">${flash.error}</p>
+  </div>
+</div>
+#{/if}
+
 <html>
     <head>
         <title>#{get 'title' /}</title>

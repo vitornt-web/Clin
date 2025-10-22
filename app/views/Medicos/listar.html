@@ -1,5 +1,21 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
+<!-- Flash popup centralizado -->
+#{if flash.success}
+<div id="flashPopup" class="popup-flash show bg-success text-white">
+  <div class="popup-content text-center p-4 rounded">
+    <p class="mb-0">${flash.success}</p>
+  </div>
+</div>
+#{/if}
+
+#{if flash.error}
+<div id="flashPopup" class="popup-flash show bg-danger text-white">
+  <div class="popup-content text-center p-4 rounded">
+    <p class="mb-0">${flash.error}</p>
+  </div>
+</div>
+#{/if}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -114,6 +130,7 @@
 											<strong>Nome:</strong> ${m.nome} 
 											<strong>CRM:</strong> ${m.crm} 
 											<strong>Email:</strong> ${m.email}
+											<strong>Senha:</strong> ${m.senha}
 										</div>
 										<div>
 											<a href="@{Medicos.editar(m.id)}" class="btn btn-sm btn-outline-secondary me-2">Editar</a>

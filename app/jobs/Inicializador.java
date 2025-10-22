@@ -1,6 +1,8 @@
 package jobs;
 
 import models.Especialidade;
+import models.Medico;
+import models.Perfil;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 
@@ -23,6 +25,13 @@ public class Inicializador extends Job{
 			nutri.save();
 			
 		}
+		Medico d = new Medico();
+		d.nome = "admin";
+		d.email = "admin@admin.com";
+		d.perfil = Perfil.ADMINISTRADOR;
+		d.senha = "12345";
+		d.save();
 	}
+	
 
 }
