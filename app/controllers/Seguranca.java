@@ -7,21 +7,24 @@ import play.mvc.Controller;
 
 public class Seguranca extends Controller {
 
-	@Before(unless = { "Logins.form" })
-	static void verificar() {
+	// Bloqueia acesso a páginas sem login
+	@Before(unless = { "Logins.form", "Logins.logar", "Application.index" })
+	static void verificarLogin() {
 		if (session.get("med.email") == null) {
+			flash.error("É necessário estar logado para acessar esta página.");
 			Logins.form();
 		}
 	}
-	
-	@Before
- 	static void verificarAdministrador() {
-      	   String perfil = session.get("perfilPerfil");
-      	   Administrador adminAnnotation = getActionAnnotation(Administrador.class);
-      	   if (adminAnnotation != null && 
-      			   !Perfil.ADMINISTRADOR.name().equals(perfil)) {
-              forbidden("Acesso restrito aos administradores do sistema");
-      	    }
- 	}
 
+	// Verifica se o usuário é administrador antes de acessar métodos anotados
+	@Before
+	static void verificarAdministrador() {
+		Administrador adminAnnotation = getActionAnnotation(Administrador.class);
+		if (adminAnnotation != null) {
+			String perfil = session.get("med.perfil");
+			if (perfil == null || !perfil.equals(Perfil.ADMINISTRADOR.name())) {
+				forbidden("Acesso restrito aos administradores do sistema.");
+			}
+		}
+	}
 }
