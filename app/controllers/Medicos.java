@@ -13,12 +13,13 @@ import play.mvc.With;
 @With(Seguranca.class)
 public class Medicos extends Controller {
 
+	
+    
 	public static void form() {
 		List<Especialidade> especialidades = Especialidade.findAll();
 		render(especialidades);
 	}
-
-	@Administrador
+    @Administrador
 	public static void listar(String termo) {
 		List<Medico> medicosAtivos = null;
 		medicosAtivos = Medico.find("status <> ?1", Status.INATIVO).fetch();
@@ -31,16 +32,14 @@ public class Medicos extends Controller {
 		render(medicosAtivos, termo);
 
 	}
-
-	@Administrador
+    @Administrador
 	public static void editar(Long id) {
 
 		Medico med = Medico.findById(id);
 		List<Especialidade> especialidades = Especialidade.findAll();
 		renderTemplate("Medicos/form.html", med, especialidades);
 	}
-
-	@Administrador
+    @Administrador
 	public static void deletar(Long id) {
 		Medico med = Medico.findById(id);
 		med.status = Status.INATIVO;
