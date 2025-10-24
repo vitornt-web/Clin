@@ -5,19 +5,28 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import models.Especialidade;
-
-
+import play.data.validation.Email;
+import play.data.validation.Max;
+import play.data.validation.MaxSize;
+import play.data.validation.Min;
+import play.data.validation.MinSize;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
 public class Medico extends Model{
 	
+	@Required @MaxSize(30)
 	public String nome;
+	
+	@Required @Email
 	public String email;
-	public Integer crm;
+	
+	@Required @MinSize(6)
+	public String crm;
+	
+	@Required @MinSize(6)
 	public String senha;
-	
-	
 	
 	@Enumerated(EnumType.STRING)
 	public Status status;
@@ -25,7 +34,7 @@ public class Medico extends Model{
 	@Enumerated(EnumType.STRING)
 	public Perfil perfil;
 	
-	@ManyToOne
+	@ManyToOne @Required
 	public Especialidade especialidade;
 	
 	public Medico() {
@@ -34,7 +43,7 @@ public class Medico extends Model{
 	}
 	
 	
-	public Medico(String nome, String email, Integer crm,Especialidade esp, String senha) {
+	public Medico(String nome, String email, String crm,Especialidade esp, String senha) {
 		this.nome = nome;
 		this.email = email;
 		this.crm = crm;

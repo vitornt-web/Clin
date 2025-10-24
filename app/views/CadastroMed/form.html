@@ -1,5 +1,13 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
+#{set 'moreStyles'}
+    <style>
+        body {
+            overflow-y: hidden; /* Esconde o scroll vertical */
+            overflow-x: hidden; /* Esconde o scroll horizontal */
+        }
+    </style>
+#{/set}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -114,9 +122,11 @@
 													<!-- Primeira linha com dois campos -->
 													<div class="col-md-6 form-group mb-3">
 														<input value="${med?.nome}" name="med.nome" type="text" class="form-control" placeholder="Nome">
+														<span class="text-danger">#{error 'med.nome'/}</span>
 													</div>
 													<div class="col-md-6 form-group mb-3">
-														<input value="${med?.crm}" name="med.crm" type="text" class="form-control" id="crm" placeholder="CRM" required>
+														<input value="${med?.crm}" name="med.crm" type="text" class="form-control" id="crm" placeholder="CRM">
+														<span class="text-danger">#{error 'med.crm'/}</span>
 													</div>
 												</div>
 
@@ -124,19 +134,21 @@
 													<!-- Segunda linha com dois campos -->
 													<div class="col-md-6 form-group mb-3">
 														<input value="${med?.email}" name="med.email" type="email" class="form-control" placeholder="E-mail">
+														<span class="text-danger">#{error 'med.email'/}</span>
 													</div>
 													<div class="col-md-6 form-group mb-3">
 													<input value="${med?.senha}" name="med.senha" type="password" class="form-control" placeholder="Senha">
-													</div>
+													<span class="text-danger">#{error 'med.senha'/}</span>
+												</div>
 													</div>
 													<div class="row justify-content-center">
 													<div class="col-md-6 form-group mb-3">
-														<select name="med.especialidade.id" id="department" class="form-select" required>
+														<select name="med.especialidade.id" id="department" class="form-select">
 															<option value="">Selecione a especialidade</option>
 															#{list items:especialidades, as:'e'}
 																<option value="${e.id}">${e.nome}</option>
 														  	#{/list}
-														</select>
+														</select> <span class="text-danger">#{error 'med.especialidade' /}</span>
 													
 													</div>
 												</div>
@@ -147,7 +159,7 @@
 													<div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
 													<div class="text-center">
 														<button type="submit">Enviar</button>
-														<a href="@{Medicos.listar}">Listar</a>
+														
 													</div>
 												</div>
 												</div>

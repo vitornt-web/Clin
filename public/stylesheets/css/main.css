@@ -89,6 +89,37 @@ body {
   font-family: var(--default-font);
 }
 
+/* --- 2. Campo Obrigatório (:required) --- */
+/* Adiciona um asterisco ou algo visual em campos obrigatórios */
+input:required {
+  border-left: 5px solid orange; /* Marca visual de que é obrigatório */
+}
+
+/* --- 3. Campo Inválido (:invalid) --- */
+/* * O campo fica vermelho QUANDO o usuário já interagiu com ele
+ * E o conteúdo está inválido.
+*/
+input:invalid {
+  border-color: red;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+/* --- 4. Campo Válido (:valid) --- */
+/* * O campo fica verde QUANDO o usuário já interagiu
+ * E o conteúdo está válido.
+*/
+input:valid {
+  border-color: green;
+  box-shadow: 0 0 5px rgba(0, 128, 0, 0.5);
+}
+
+/* --- 5. Foco (Bônus) --- */
+/* Um feedback visual melhor quando o usuário clica no campo */
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
 a {
   color: var(--accent-color);
   text-decoration: none;

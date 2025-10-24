@@ -10,19 +10,7 @@ public class Logins extends Controller{
 	public static void form() {
 		render();
 	}
-     
-	public static void teste() {
-		if (Medico.count("email = ?1", "admin@admin.com") == 0) {
-		
-		
-		flash.success("Médico de teste criado com sucesso!");
-		form();
-		}else {
-			flash.error("Médico teste já cadastrado");
-		}
-		form();
-	}
-	
+
 	public static void logar(String email, String senha) {
 	    Medico md = Medico.find("email = ?1 and senha = ?2", email, senha).first();
 

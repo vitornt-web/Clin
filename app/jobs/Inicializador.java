@@ -25,13 +25,26 @@ public class Inicializador extends Job{
 			nutri.save();
 			
 		}
-		Medico d = new Medico();
-		d.nome = "admin";
-		d.email = "admin@admin.com";
-		d.perfil = Perfil.ADMINISTRADOR;
-		d.senha = "12345";
-		d.save();
+			
+	        // Tenta encontrar o admin
+			Medico d = Medico.find("email = ?1", "admin@admin.com").first();
+			
+	        // Se não existir, cria um novo
+			if (d == null) {
+				d = new Medico();
+				d.email = "admin@admin.com";
+				d.nome = "admin";
+			}
+			
+	        // Garante que ele SEJA administrador
+			d.perfil = Perfil.ADMINISTRADOR; 
+			d.senha = "12345";
+			d.save();
+	        // --- FIM DA CORREÇÃO ---
+		}
 	}
 	
+	
+	
 
-}
+

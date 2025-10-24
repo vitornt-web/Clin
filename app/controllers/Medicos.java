@@ -33,13 +33,6 @@ public class Medicos extends Controller {
 
 	}
     @Administrador
-	public static void editar(Long id) {
-
-		Medico med = Medico.findById(id);
-		List<Especialidade> especialidades = Especialidade.findAll();
-		renderTemplate("Medicos/form.html", med, especialidades);
-	}
-    @Administrador
 	public static void deletar(Long id) {
 		Medico med = Medico.findById(id);
 		med.status = Status.INATIVO;
