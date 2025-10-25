@@ -142,15 +142,19 @@
 												</div>
 													</div>
 													<div class="row justify-content-center">
-													<div class="col-md-6 form-group mb-3">
-														<select name="med.especialidade.id" id="department" class="form-select">
-															<option value="">Selecione a especialidade</option>
-															#{list items:especialidades, as:'e'}
-																<option value="${e.id}">${e.nome}</option>
-														  	#{/list}
-														</select> <span class="text-danger">#{error 'med.especialidade' /}</span>
-													
-													</div>
+														<div class="col-md-6 form-group mb-3">
+														    <select name="med.especialidade.id" id="department" class="form-select">
+														        <option value="">Selecione a especialidade</option>
+														        #{list items:especialidades, as:'e'}
+														            
+														            <option value="${e.id}" ${med?.especialidade?.id == e.id ? 'selected' : ''}>
+														                ${e.nome}
+														            </option>
+														            
+														        #{/list}
+														    </select>
+														    <span class="text-danger">#{error 'med.especialidade' /}</span>
+														</div>
 												</div>
 
 												<div class="mt-3">

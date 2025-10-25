@@ -1,3 +1,8 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
+nome=No máximo 30 caracteres.
+email=Digite um email válido.
+senha=No mínimo 5 caracteres.
+esp=Selecione uma especialidade.
+crm=Digite um CRM válido.

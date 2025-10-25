@@ -16,16 +16,16 @@ import play.db.jpa.Model;
 @Entity
 public class Medico extends Model{
 	
-	@Required @MaxSize(30)
+	@Required(message="nome") @MaxSize(30) 
 	public String nome;
 	
-	@Required @Email
+	@Required(message="email") @Email
 	public String email;
 	
-	@Required @MinSize(6)
+	@Required(message="crm") @MinSize(6)
 	public String crm;
 	
-	@Required @MinSize(6)
+	@Required(message="senha") @MinSize(6)
 	public String senha;
 	
 	@Enumerated(EnumType.STRING)
@@ -34,7 +34,7 @@ public class Medico extends Model{
 	@Enumerated(EnumType.STRING)
 	public Perfil perfil;
 	
-	@ManyToOne @Required
+	@ManyToOne @Required(message="esp")
 	public Especialidade especialidade;
 	
 	public Medico() {
