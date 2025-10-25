@@ -1,8 +1,22 @@
 # You can specialize this file for each language.
 # For example, for French create a messages.fr file
 #
-nome=No máximo 30 caracteres.
-email=Digite um email válido.
-senha=No mínimo 5 caracteres.
-esp=Selecione uma especialidade.
-crm=Digite um CRM válido.
+
+# --- Campo Nome ---
+validation.required.med.nome=O campo nome é obrigatório
+validation.maxSize.med.nome=O nome deve ter no máximo 30 caracteres
+
+# --- Campo Email ---
+validation.required.med.email=O campo e-mail é obrigatório
+validation.email.med.email=Digite um formato de e-mail válido
+
+# --- Campo CRM ---
+validation.required.med.crm=O campo CRM é obrigatório
+validation.minSize.med.crm=O CRM deve ter no mínimo 6 caracteres
+
+# --- Campo Senha ---
+validation.required.med.senha=O campo senha é obrigatório
+validation.minSize.med.senha=A senha deve ter no mínimo 6 caracteres
+
+# --- Campo Especialidade ---
+validation.required.med.especialidade=Por favor, selecione uma especialidade

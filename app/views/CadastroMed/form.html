@@ -119,42 +119,80 @@
 												<input type="hidden" class="form-control" name="med.id" value="${med?.id}">
 
 												<div class="row">
-													<!-- Primeira linha com dois campos -->
 													<div class="col-md-6 form-group mb-3">
-														<input value="${med?.nome}" name="med.nome" type="text" class="form-control" placeholder="Nome">
-														<span class="text-danger">#{error 'med.nome'/}</span>
+													    
+													    <input value="${med?.nome}" name="med.nome" type="text" 
+													           class="form-control #{ifError 'med.nome'}is-invalid#{/ifError}" 
+													           placeholder="Nome">
+													    
+													    <div class="invalid-feedback">
+													        <i class="bi bi-exclamation-circle-fill">O campo nome é obrigatório</i>
+													        #{error 'med.nome' /}
+													    </div>
+
 													</div>
 													<div class="col-md-6 form-group mb-3">
-														<input value="${med?.crm}" name="med.crm" type="text" class="form-control" id="crm" placeholder="CRM">
-														<span class="text-danger">#{error 'med.crm'/}</span>
+													    
+													    <input value="${med?.crm}" name="med.crm" type="text" 
+													           class="form-control #{ifError 'med.crm'}is-invalid#{/ifError}" 
+													           placeholder="CRM">
+													    
+													    <div class="invalid-feedback">
+													        <i class="bi bi-exclamation-circle-fill">O campo CRM é obrigatório e maior que 6 caracteres.</i>
+													        #{error 'med.crm' /}
+													    </div>
+
 													</div>
 												</div>
 
 												<div class="row">
 													<!-- Segunda linha com dois campos -->
 													<div class="col-md-6 form-group mb-3">
-														<input value="${med?.email}" name="med.email" type="email" class="form-control" placeholder="E-mail">
-														<span class="text-danger">#{error 'med.email'/}</span>
+													    
+													    <input value="${med?.email}" name="med.email" type="text" 
+													           class="form-control #{ifError 'med.email'}is-invalid#{/ifError}" 
+													           placeholder="Email">
+													    
+													    <div class="invalid-feedback">
+													        <i class="bi bi-exclamation-circle-fill">O campo e-mail é obrigatório</i>
+													        #{error 'med.email' /}
+													    </div>
+
 													</div>
 													<div class="col-md-6 form-group mb-3">
-													<input value="${med?.senha}" name="med.senha" type="password" class="form-control" placeholder="Senha">
-													<span class="text-danger">#{error 'med.senha'/}</span>
-												</div>
+													    
+													    <input value="${med?.senha}" name="med.senha" type="text" 
+													           class="form-control #{ifError 'med.senha'}is-invalid#{/ifError}" 
+													           placeholder="Senha">
+													    
+													    <div class="invalid-feedback">
+													        <i class="bi bi-exclamation-circle-fill">O campo senha é obrigatório e maior que 6 caracteres.</i>
+													        #{error 'med.senha' /}
+													    </div>
+
+													</div>
 													</div>
 													<div class="row justify-content-center">
-														<div class="col-md-6 form-group mb-3">
-														    <select name="med.especialidade.id" id="department" class="form-select">
-														        <option value="">Selecione a especialidade</option>
-														        #{list items:especialidades, as:'e'}
-														            
-														            <option value="${e.id}" ${med?.especialidade?.id == e.id ? 'selected' : ''}>
-														                ${e.nome}
-														            </option>
-														            
-														        #{/list}
-														    </select>
-														    <span class="text-danger">#{error 'med.especialidade' /}</span>
-														</div>
+													    <div class="col-md-6 form-group mb-3">
+													    
+													        <select name="med.especialidade.id" id="department" 
+													                class="form-select #{ifError 'med.especialidade'}is-invalid#{/ifError}">
+													            
+													            <option value="">Selecione a especialidade</option>
+													            #{list items:especialidades, as:'e'}
+													                <option value="${e.id}" ${med?.especialidade?.id == e.id ? 'selected' : ''}>
+													                    ${e.nome}
+													                </option>
+													            #{/list}
+													        </select>
+													        
+													        <div class="invalid-feedback">
+													            <i class="bi bi-exclamation-circle-fill">Por favor, selecione uma especialidade</i>
+													            #{error 'med.especialidade' /}
+													        </div>
+													        
+													    </div>
+													
 												</div>
 
 												<div class="mt-3">
