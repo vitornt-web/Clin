@@ -248,6 +248,34 @@
 		#{get 'moreScripts' /}
 
 	</body>
+	<script>
+	document.getElementById("formCadastroMed").addEventListener("submit", async function(e){
+	    e.preventDefault();
+
+	    const form = document.getElementById("formCadastroMed");
+	    const formData = new FormData(form);
+
+	    const response = await fetch("/cadastroMed/salvarAjax", {
+	        method: "POST",
+	        body: formData
+	    });
+
+	    const json = await response.json();
+	    const msg = document.getElementById("msg");
+
+	    if (json.status === "erro") {
+	        msg.innerHTML = `
+	            <div class="alert alert-danger">${'$'}{json.mensagem}</div>
+	        `;
+	    } else {
+	        msg.innerHTML = `
+	            <div class="alert alert-success">${'$'}{json.mensagem}</div>
+	        `;
+
+	        form.reset();
+	    }
+	});
+	</script>
 
 	</html>
 

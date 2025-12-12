@@ -21,22 +21,19 @@ public class CadastroMed extends Controller {
 	}
 	
 	@Administrador
-	public static void salvar(@Valid Medico med) {
+	public static void salvarAjax(@Valid Medico med) {
 
-		if(validation.hasErrors() ) {
-			validation.keep();
-			List<Especialidade> especialidades = Especialidade.findAll();
-			
-			params.flash();
-			Cache.set("med", med);
-			CadastroMed.form();
-		}
-		Medico m = med;
-		m.save();
-		flash.success("Parabéns, você está cadastrado.");
-		// listar(null);
-	    Logins.form();
+	    // Se houver erros de validação
+	    if (validation.hasErrors()) {
+	        String msg = "Erro ao salvar. Verifique os campos obrigatórios.";
+	        renderJSON("{ \"status\": \"erro\", \"mensagem\": \"" + msg + "\" }");
+	    }
+
+	    med.save();
+
+	    renderJSON("{ \"status\": \"ok\", \"mensagem\": \"Médico cadastrado com sucesso!\" }");
 	}
+
 	
 	 @Administrador
 		public static void editar(Long id) {
