@@ -249,31 +249,25 @@
 
 	</body>
 	<script>
-	document.getElementById("formCadastroMed").addEventListener("submit", async function(e){
+	$(".php-email-form").submit(function(e) {
 	    e.preventDefault();
 
-	    const form = document.getElementById("formCadastroMed");
-	    const formData = new FormData(form);
-
-	    const response = await fetch("/cadastroMed/salvarAjax", {
-	        method: "POST",
-	        body: formData
+	    $.ajax({
+	        url: "@{CadastroMed.salvar()}",
+	        type: "POST",
+	        data: $(this).serialize(),
+	        success: function(resp) {
+	            if (resp.status === "ok") {
+	                $("#msg").html(
+	                    "<div class='alert alert-success'>" + resp.mensagem + "</div>"
+	                );
+	            } else {
+	                $("#msg").html(
+	                    "<div class='alert alert-danger'>" + resp.mensagem + "</div>"
+	                );
+	            }
+	        }
 	    });
-
-	    const json = await response.json();
-	    const msg = document.getElementById("msg");
-
-	    if (json.status === "erro") {
-	        msg.innerHTML = `
-	            <div class="alert alert-danger">${'$'}{json.mensagem}</div>
-	        `;
-	    } else {
-	        msg.innerHTML = `
-	            <div class="alert alert-success">${'$'}{json.mensagem}</div>
-	        `;
-
-	        form.reset();
-	    }
 	});
 	</script>
 
